@@ -15,8 +15,8 @@ public class SGRandomWalk {
         escape.fill();
         escape.draw();
 
-        int deltaX = (int) (21 * Math.random()) - 10;
-        int deltaY = (int) (21 * Math.random()) - 10;
+        int deltaX;
+        int deltaY;
         boolean insideCircle = true;
         int steps = 0;
 
@@ -24,16 +24,23 @@ public class SGRandomWalk {
         int totalY = 0;
 
         while (insideCircle) {
+            deltaX = (int) (21 * Math.random()) - 10;
+            deltaY = (int) (21 * Math.random()) - 10;
+            
             RandomWalk.translate(deltaX, deltaY);
             steps++;
             try { Thread.sleep(100);}
             catch(Exception ex) {};
 
-            deltaX = (int) (21 * Math.random()) - 10;
-            deltaY = (int) (21 * Math.random()) - 10;
+            totalX += deltaX;
+            totalY += deltaY;
 
-            if () insideCircle = false;
+            if ((Math.pow(totalX, 2) + Math.pow(totalY, 2)) > (Math.pow(110, 2))) insideCircle = false;
+
+            System.out.println(totalX + " " + totalY);
         }
+
+        System.out.println("Escaped in " + steps + " steps.");
 
     }
 }
